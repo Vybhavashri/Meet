@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Vybhavashri/meet/static/css/main.073c9b0a.css",
+    "main.js": "/Vybhavashri/meet/static/js/main.1662fe35.js",
+    "static/js/377.dda790c9.chunk.js": "/Vybhavashri/meet/static/js/377.dda790c9.chunk.js",
+    "service-worker.js": "/Vybhavashri/meet/service-worker.js",
+    "static/media/logo.svg": "/Vybhavashri/meet/static/media/logo.103b5fa18196d5665a7e12318285c916.svg",
+    "index.html": "/Vybhavashri/meet/index.html",
+    "main.073c9b0a.css.map": "/Vybhavashri/meet/static/css/main.073c9b0a.css.map",
+    "main.1662fe35.js.map": "/Vybhavashri/meet/static/js/main.1662fe35.js.map",
+    "377.dda790c9.chunk.js.map": "/Vybhavashri/meet/static/js/377.dda790c9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.1662fe35.js"
+  ]
+}
