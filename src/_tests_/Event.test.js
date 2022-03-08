@@ -22,10 +22,16 @@ describe('<EventList /> component', () => {
     expect(EventWrapper.find('.summary')).toHaveLength(1);
   })
 
-  //button area
+  test("Date and timezone are displayed", () => {
+    expect(EventWrapper.find(".start-date")).toHaveLength(1);
+  });
 
   test('render the show details button', () => {
     expect(EventWrapper.find('.show-details')).toHaveLength(1);
+  });
+
+  test("event element is collapsed by default", () => {
+    expect(EventWrapper.state("collapsed")).toBe(true);
   });
 
   test('open details when the button is clicked', () => {
