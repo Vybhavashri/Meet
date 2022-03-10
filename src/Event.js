@@ -14,11 +14,12 @@ class Event extends Component {
   render() {
     const { event } = this.props;
     const { collapsed } = this.state;
+
     return (
       <div className='event'>
 
-        <h2 className="summary">{event.summary}
-        </h2>
+        <h2 className="summary">{event.summary} </h2>
+
         <p className="start-date">
           {event.start.dateTime} ({event.start.timeZone})
         </p>
@@ -29,8 +30,7 @@ class Event extends Component {
 
         <button variant="outline-info"
           className={`${collapsed ? "show" : "hide"}-details`}
-          onClick={this.handleClick}
-        >
+          onClick={this.handleClick}>
           {collapsed ? "Show Details" : "Hide Details"}
         </button>
 
@@ -41,7 +41,6 @@ class Event extends Component {
               See details on Google Calendar
             </a>
             <p className="event-description">{event.description}</p>
-
           </div>
         }
       </div>
@@ -49,7 +48,5 @@ class Event extends Component {
   }
 
 }
-
-
 
 export default Event;
