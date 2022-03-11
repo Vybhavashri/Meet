@@ -16,10 +16,15 @@ describe('<NumberOfEvents /> component', () => {
     expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
   });
 
-  test('change state when number input changes', () => {
-    NumberOfEventsWrapper.setState({ numberOfEvents: '32' });
-    NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', { target: { value: "4" } });
-    expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual("4");
+  test('default number of events rendered', () => {
+    expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe(32);
+  })
+
+  test("number of events is changed in input", () => {
+    NumberOfEventsWrapper.find(".numberOfEvents").simulate("change", {
+      target: { value: 16 },
+    });
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(16);
   });
 
 });
