@@ -7,15 +7,9 @@ class NumberOfEvents extends Component {
 
   handleInputChange = (event) => {
     const value = event.target.value;
-    if (value < 33 || value > 1) {
-      this.setState({
-        numberOfEvents: '',
-      })
-    } else {
-      this.setState({
-        numberOfEvents: value,
-      });
-    }
+    this.setState({
+      numberOfEvents: value,
+    });
     this.props.updateNumberOfEvents(event.target.value);
   };
 
