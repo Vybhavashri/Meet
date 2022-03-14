@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import * as atatus from 'atatus-spa';
+atatus.config('e3f594798d944bbb9aeeccead744926e').install();
 
 ReactDOM.render(
   <React.StrictMode>
