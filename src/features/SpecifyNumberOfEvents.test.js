@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import App from '../App';
 
 // loadFeature expects file path to start from project root
-const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
+const feature = loadFeature('./src/features/SpecifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
   test('The app should display 32 events by default', ({ given, when, then }) => {
