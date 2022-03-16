@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { Container, Row, Col } from "react-bootstrap";
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { numberOfEvents } = this.state;
+    const { numberOfEvents } = this.state.numberOfEvents;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
@@ -43,28 +44,43 @@ class App extends Component {
     });
   }
 
-  updateNumberOfEvents = async e => {
-    const newNumber = e.target.value ? parseInt(e.target.value) : 32;
-    if (newNumber < 1 || newNumber > 32) {
-      return this.setState({
-        numberOfEvents: 0,
-      });
-    } else {
-      this.setState({
-        numberOfEvents: newNumber,
-      });
-      this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
-    }
+
+  updateNumberOfEvents = (eventCount) => {
+    const { currentLocation } = this.state;
+    this.setState({
+      numberOfEvents: eventCount,
+    });
+    this.updateEvents(currentLocation, eventCount);
   };
 
   render() {
     return (
-      <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents numberOfEvents={this.state.numberOfEvents}
-          updateNumberOfEvents={this.updateNumberOfEvents} />
-        <EventList events={this.state.events} />
-      </div>
+      <Container>
+        <br />
+        <div className="App">
+          <Row>
+            <Col>
+              <CitySearch
+                locations={this.state.locations}
+                updateEvents={this.updateEvents}
+              />
+            </Col>
+            <Col>
+              <NumberOfEvents
+                numberOfEvents={this.state.numberOfEvents}
+                updateNumberOfEvents={this.updateNumberOfEvents}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <EventList
+                events={this.state.events} />
+            </Col>
+          </Row>
+        </div>
+      </Container>
+
     );
   }
 }
