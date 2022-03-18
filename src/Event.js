@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Event extends Component {
   state = {
+    event: {},
     collapsed: true,
   }
 
@@ -46,7 +47,6 @@ class Event extends Component {
       </div>
     )
   }
-
 }
 
 export default Event;
