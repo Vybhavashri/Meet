@@ -21,8 +21,7 @@ class App extends Component {
     const { numberOfEvents } = this.state.numberOfEvents;
     this.mounted = true;
     const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false :
-      true;
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
@@ -43,21 +42,24 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, numberOfEvents) => {
+  updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents.slice(0, this.state.numberOfEvents),
-        currentLocation: location,
-      });
+      const { numberOfEvents } = this.state;
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents.slice(0, numberOfEvents),
+          currentLocation: location,
+        });
+      }
     });
   }
 
 
   updateNumberOfEvents = (eventCount) => {
-    const { currentLocation } = this.state;
+    const { currentLocation } = this.state.currentLocation;
     this.setState({
       numberOfEvents: eventCount,
     });
@@ -65,35 +67,38 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div
-      className="App" />
+    if (this.state.showWelcomeScreen === undefined)
+      return <div className="App" />
     return (
-      <Container>
-        <br />
-        <div className="App">
-          <Row>
-            <Col>
-              <CitySearch
-                locations={this.state.locations}
-                updateEvents={this.updateEvents}
-              />
-            </Col>
-            <Col>
-              <NumberOfEvents
-                numberOfEvents={this.state.numberOfEvents}
-                updateNumberOfEvents={this.updateNumberOfEvents}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <EventList
-                events={this.state.events} />
-            </Col>
-          </Row>
-          <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-            getAccessToken={() => { getAccessToken() }} />
-        </div>
+      <Container className='App' fluid>
+        <Row>
+          <h1>Meet App</h1>
+          <Col>
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+            />
+          </Col>
+          <Col>
+            <NumberOfEvents
+              numberOfEvents={this.state.numberOfEvents}
+              updateNumberOfEvents={this.updateNumberOfEvents}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <h3>Events in each city</h3>
+          <Col>
+            <EventList
+              events={this.state.events} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+              getAccessToken={() => { getAccessToken() }} />
+          </Col>
+        </Row>
       </Container>
     );
   }
