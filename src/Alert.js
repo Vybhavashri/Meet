@@ -36,3 +36,10 @@ export class ErrorAlert extends Alert {
     this.color = 'red';
   }
 }
+
+export class OfflineAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = 'blue';
+  }
+}
