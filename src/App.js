@@ -6,6 +6,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import WelcomeScreen from './WelcomeScreen';
+import { OfflineAlert } from './Alert';
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
     currentLocation: 'all',
     numberOfEvents: 32,
     showWelcomeScreen: undefined,
+    OfflineAlertText: '',
   }
 
   async componentDidMount() {
@@ -36,6 +38,15 @@ class App extends Component {
           });
         }
       });
+    }
+    if (!navigator.onLine) {
+      this.setState({
+        OfflineAlertText: 'You are currently offline, events may not be updated.'
+      })
+    } else {
+      this.setState({
+        OfflineAlertText: ''
+      })
     }
   }
 
@@ -67,10 +78,12 @@ class App extends Component {
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
+    const { OfflineAlertText } = this.state.OfflineAlertText;
     return (
       <Container>
         <br />
         <div className="App">
+          <OfflineAlert text={OfflineAlertText} />
           <Row>
             <Col>
               <CitySearch
