@@ -20,6 +20,18 @@ class App extends Component {
   componentDidMount() {
     const { numberOfEvents } = this.state.numberOfEvents;
     this.mounted = true;
+
+    if (!navigator.onLine) {
+      this.setState({
+        warningText: 'You are offline! The event list is loaded from the cache.'
+      })
+    }
+    else {
+      this.setState({
+        warningText: ''
+      })
+    }
+
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
@@ -43,16 +55,6 @@ class App extends Component {
         events: locationEvents.slice(0, this.state.numberOfEvents),
         currentLocation: location,
       });
-      if (!navigator.onLine) {
-        this.setState({
-          warningText: 'You are offline! The event list is loaded from the cache.'
-        })
-      }
-      else {
-        this.setState({
-          warningText: ''
-        })
-      }
     });
   }
 
