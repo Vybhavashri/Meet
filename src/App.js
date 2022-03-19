@@ -14,7 +14,6 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 32,
-    warningText: '',
   }
 
   componentDidMount() {
@@ -35,17 +34,6 @@ class App extends Component {
   }
 
   updateEvents = (location) => {
-    if (!navigator.onLine) {
-      this.setState({
-        warningText: 'You are offline! The event list is loaded from the cache.'
-      })
-    }
-    else {
-      this.setState({
-        warningText: ''
-      })
-    }
-
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
@@ -85,7 +73,6 @@ class App extends Component {
         </Row>
         <Row>
           <Col>
-            <WarningAlert text={this.state.warningText} />
             <EventList
               events={this.state.events} />
           </Col>
