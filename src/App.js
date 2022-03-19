@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   updateNumberOfEvents = (eventCount) => {
-    const { currentLocation } = this.state.currentLocation;
+    const { currentLocation } = this.state;
     this.setState({
       numberOfEvents: eventCount,
     });
