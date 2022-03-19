@@ -5,6 +5,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import { Container, Row, Col } from "react-bootstrap";
+import { WarningAlert } from "./Alert";
 
 class App extends Component {
 
@@ -13,7 +14,6 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 32,
-    OfflineAlertText: '',
   }
 
   componentDidMount() {
@@ -73,6 +73,9 @@ class App extends Component {
         </Row>
         <Row>
           <Col>
+            {!navigator.onLine
+              ? (<WarningAlert text='You are offline! The event list is loaded from the cache.' />)
+              : (<WarningAlert text='' />)}
             <EventList
               events={this.state.events} />
           </Col>
