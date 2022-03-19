@@ -66,7 +66,6 @@ class App extends Component {
   };
 
   render() {
-    const { warningText } = this.state;
     return (
       <Container className='App' fluid>
         <Row>
@@ -86,9 +85,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col>
-            {!navigator.onLine
-              ? (<WarningAlert text={warningText} />)
-              : (<WarningAlert text={''} />)}
+            <WarningAlert text={this.state.warningText} />
             <EventList
               events={this.state.events} />
           </Col>
