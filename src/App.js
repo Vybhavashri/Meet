@@ -35,7 +35,6 @@ class App extends Component {
   }
 
   updateEvents = (location) => {
-
     if (!navigator.onLine) {
       this.setState({
         warningText: 'You are offline! The event list is loaded from the cache.'
@@ -89,7 +88,7 @@ class App extends Component {
           <Col>
             {!navigator.onLine
               ? (<WarningAlert text={warningText} />)
-              : (<WarningAlert text={warningText} />)}
+              : (<WarningAlert text={''} />)}
             <EventList
               events={this.state.events} />
           </Col>
