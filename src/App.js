@@ -14,6 +14,7 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 32,
+    warningText: '',
   }
 
   componentDidMount() {
@@ -42,6 +43,16 @@ class App extends Component {
         events: locationEvents.slice(0, this.state.numberOfEvents),
         currentLocation: location,
       });
+      if (!navigator.onLine) {
+        this.setState({
+          warningText: 'You are offline! The event list is loaded from the cache.'
+        })
+      }
+      else {
+        this.setState({
+          warningText: ''
+        })
+      }
     });
   }
 
@@ -54,6 +65,7 @@ class App extends Component {
   };
 
   render() {
+    const { warningText } = this.state;
     return (
       <Container className='App' fluid>
         <Row>
@@ -74,8 +86,8 @@ class App extends Component {
         <Row>
           <Col>
             {!navigator.onLine
-              ? (<WarningAlert text='You are offline! The event list is loaded from the cache.' />)
-              : (<WarningAlert text='' />)}
+              ? (<WarningAlert text={WarningAlertText} />)
+              : (<WarningAlert text={WarningAlertText} />)}
             <EventList
               events={this.state.events} />
           </Col>
