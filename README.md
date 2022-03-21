@@ -3,6 +3,8 @@ https://vybhavashri.github.io/meet/
 
 The **Meet App** is a serverless, progressive web application (PWA) built with React using test-driven (TDD) and behaviour-driven (BDD) development methods. The application uses the Google Calendar API to fetch upcoming events for full-stack web developers.
 
+![2 Meet App](https://user-images.githubusercontent.com/46229037/159357236-a2978728-a48f-4ddb-a836-76c3c4860d02.jpg)
+
 ## Key Features
 
 * Filter events by city
