@@ -5,6 +5,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import EventGenre from './EventGenre';
+import { OfflineAlert } from './Alert';
 import { getEvents, extractLocations } from './api';
 import { Container, Row, Col } from "react-bootstrap";
 import {
@@ -20,7 +21,7 @@ class App extends Component {
     numberOfEvents: 32,
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { numberOfEvents } = this.state.numberOfEvents;
     this.mounted = true;
     getEvents().then((events) => {
@@ -31,6 +32,15 @@ class App extends Component {
         });
       }
     });
+    if (!navigator.onLine) {
+      this.setState({
+        offlineText: 'You are currently offline, events may not be updated.'
+      })
+    } else {
+      this.setState({
+        offlineText: ''
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -68,8 +78,10 @@ class App extends Component {
   };
 
   render() {
+    const { OfflineAlertText } = this.state;
     return (
       <Container className='App' fluid>
+        <OfflineAlert text={OfflineAlertText} />
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
         <CitySearch
