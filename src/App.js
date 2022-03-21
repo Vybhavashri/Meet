@@ -19,6 +19,7 @@ class App extends Component {
     locations: [],
     currentLocation: 'all',
     numberOfEvents: 32,
+    offlineText: '',
   }
 
   async componentDidMount() {
@@ -78,10 +79,10 @@ class App extends Component {
   };
 
   render() {
-    const { OfflineAlertText } = this.state;
     return (
       <Container className='App' fluid>
-        <OfflineAlert text={OfflineAlertText} />
+        <OfflineAlert text={this.state.offlineText} />
+        <p>{this.state.offlineText}</p>
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
         <CitySearch
