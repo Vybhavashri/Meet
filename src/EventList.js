@@ -25,8 +25,8 @@ class EventList extends Component {
     const { events } = this.props;
     return (
       <Container className="eventlist-container">
-        <br /><br /><br />
-        <WarningAlert text={this.state.warningText} />
+        <br /><br />
+        <WarningAlert className="Alert" text={this.state.warningText} />
         <Row className="d-flex justify-content-center eventlist">
           {events.map((event) => (
             <Col sm={12} md={6} lg={4} key={event.id}>
