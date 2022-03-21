@@ -40,6 +40,6 @@ export class ErrorAlert extends Alert {
 export class WarningAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = "orange";
+    this.color = 'black';
   }
 }
